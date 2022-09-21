@@ -1,0 +1,41 @@
+﻿@page
+@model WikiClase.Pages.Categorias.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Categoria</h4>
+<hr />
+<div class="row g-3">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Categoria.nombreCategoria" class="control-label"></label>
+                    <input asp-for="Categoria.nombreCategoria" class="form-control" />
+                    <span asp-validation-for="Categoria.nombreCategoria" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Categoria.descripcion" class="control-label"></label>
+                    <input asp-for="Categoria.descripcion" class="form-control" />
+                    <span asp-validation-for="Categoria.descripcion" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
