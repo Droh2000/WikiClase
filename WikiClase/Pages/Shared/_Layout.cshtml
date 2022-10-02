@@ -3,21 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WikiClase</title>
+    <title>@ViewData["Title"] - WikiClase</title><!-- Contenedor es la plantilla el contenido se pasa de las otras paginas -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WikiClase.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background-color: #e3f2fd;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style='background-color: #91B5FA;'>
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">WikiClase</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/LA-Logo-libri-wiki.png"
+                        class="me-2"
+                        height="40"
+                        alt="MDB Logo"
+                        loading="lazy"
+                      />
+                    <small class="fw-bolder" style="color:#3F4263">Wiki-Articulos</small>
+                    </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex ms-3 fs-5">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Categorias/index">Categorias</a>
@@ -33,15 +48,17 @@
             </div>
         </nav>
     </header>
+    <!-- Este es el body -->
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+        <main role="main" class="pb-3" style="background-color: #e3f2fd;">
+            @RenderBody() <!-- En otras paginas aqui se renderiza -->
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- Este es el footer -->
+    <footer class="border-top footer text-muted" style='background-color: #91B5FA;'>
         <div class="container">
-            &copy; 2022 - WikiClase - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2022 - Wiki-Articulos - <a asp-area="" asp-page="/Privacy"><i class="bi bi-info-circle-fill text-black"></i></a>
         </div>
     </footer>
 
@@ -52,3 +69,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<!-- Al crar un raizor se puede seleccionar un layout para cada raizor pages -->

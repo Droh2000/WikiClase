@@ -5,67 +5,82 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Post</h4>
+<h1 class="text-center m-3">Editar Post</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Post.Id" />
-            <div class="form-group">
-                <label asp-for="Post.Titulo" class="control-label"></label>
-                <input asp-for="Post.Titulo" class="form-control" />
-                <span asp-validation-for="Post.Titulo" class="text-danger"></span>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Post.Titulo" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Titulo" class="form-control" />
+                        <span asp-validation-for="Post.Titulo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.Autor" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Autor" class="form-control" />
+                        <span asp-validation-for="Post.Autor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.CategoriaId" class="control-label mb-3 fs-4"></label>
+                        <select asp-for="Post.CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId">
+                        </select>
+                        <span asp-validation-for="Post.CategoriaId" class="text-danger"></span>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="Post.nombreImagen" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.nombreImagen" class="form-control" readonly/>
+                        <span asp-validation-for="Post.nombreImagen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Post.Contenido" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Contenido" class="form-control" />
+                        <span asp-validation-for="Post.Contenido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.Fecha" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Fecha" class="form-control" />
+                        <span asp-validation-for="Post.Fecha" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.TagId" class="control-label mb-3 fs-4"></label>
+                        <select asp-for="Post.TagId" class="form-control" asp-items="ViewBag.TagId">
+                        </select>
+                        <span asp-validation-for="Post.TagId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.rutaImagen" class="control-label mb-3 fs-4"></label>
+                        <img class="mt-3" src="~/Images/@Html.DisplayFor(model => model.Post.nombreImagen)" height="100" width="120" alt="@Html.DisplayFor(model => model.Post.nombreImagen)" />
+                        <span asp-validation-for="Post.rutaImagen" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Post.Contenido" class="control-label"></label>
-                <input asp-for="Post.Contenido" class="form-control" />
-                <span asp-validation-for="Post.Contenido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.Autor" class="control-label"></label>
-                <input asp-for="Post.Autor" class="form-control" />
-                <span asp-validation-for="Post.Autor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.Fecha" class="control-label"></label>
-                <input asp-for="Post.Fecha" class="form-control" />
-                <span asp-validation-for="Post.Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.CategoriaId" class="control-label"></label>
-                <select asp-for="Post.CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId">
-                </select>
-                <span asp-validation-for="Post.CategoriaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.TagId" class="control-label"></label>
-                <select asp-for="Post.TagId" class="form-control" asp-items="ViewBag.TagId">
-                </select>
-                <span asp-validation-for="Post.TagId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.nombreImagen" class="control-label"></label>
-                <input asp-for="Post.nombreImagen" class="form-control" readonly/>
-                <span asp-validation-for="Post.nombreImagen" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.rutaImagen" class="control-label"></label>
-                <img src="~/Images/@Html.DisplayFor(model => model.Post.nombreImagen)" height="100" width="120" alt="@Html.DisplayFor(model => model.Post.nombreImagen)" />
-                <span asp-validation-for="Post.rutaImagen" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="file" name="uploadfiles" />
-                <input type="submit" value="Upload" class="btn btn-primary" />
+            <div class="d-flex justify-content-between">
+                <div class="p-2">
+                    <div class="form-group mt-2">
+                        <a asp-page="./Index"><i class="bi bi-arrow-left-square-fill text-success fs-3"></i></a>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="form-group mt-2">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-auto">
+                                <input type="file" name="uploadfiles" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="form-group mt-2">
+                        <input type="submit" value="Upload" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {

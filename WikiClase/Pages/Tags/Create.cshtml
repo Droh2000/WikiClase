@@ -5,34 +5,40 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-center m-3">Creacion de la Subcategoria</h1>
 
-<h4>Tag</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Tag.subCategoria" class="control-label"></label>
-                <input asp-for="Tag.subCategoria" class="form-control" />
-                <span asp-validation-for="Tag.subCategoria" class="text-danger"></span>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Tag.subCategoria" class="control-label mb-3 fs-3"></label>
+                    <input asp-for="Tag.subCategoria" class="form-control" />
+                    <span asp-validation-for="Tag.subCategoria" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Tag.CategoriaId" class="control-label"></label>
-                <select asp-for="Tag.CategoriaId" class ="form-control" asp-items="ViewBag.CategoriaId">
-                    <option value="">Elija La Categoria</option>
-                </select>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Tag.Categoria" class="control-label mb-3 fs-3"></label>
+                    <select asp-for="Tag.CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId">
+                        <option value="">Elija La Categoria</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="d-flex justify-content-between">
+                <div class="p-2">
+                    <div class="form-group mt-2">
+                    <a asp-page="Index"><i class="bi bi-arrow-left-square-fill text-success fs-3"></i></a>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="form-group mt-2">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

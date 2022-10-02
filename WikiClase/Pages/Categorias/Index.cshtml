@@ -5,36 +5,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Categorias Registradas</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create"><i class="bi bi-plus-square-fill fs-1" style="color:#31E884"></i></a>
 </p>
-<table class="table">
+<table class="table" style="background-color:#705AFA; color:azure">
     <thead>
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Categoria[0].nombreCategoria)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Categoria[0].descripcion)
             </th>
-            <th></th>
+            <th class="text-center">
+                Opciones
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Categoria) {
         <tr>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.nombreCategoria)
             </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.descripcion)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <div class="text-center">
+                    <a asp-page="./Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square text-warning"></i></a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id"><i class="bi bi-info-circle-fill text-info"></i></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill text-danger"></i></a>
+                </div>
             </td>
         </tr>
 }

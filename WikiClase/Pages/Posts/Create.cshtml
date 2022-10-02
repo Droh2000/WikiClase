@@ -5,57 +5,68 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-center m-3">Creacion de un Post</h1>
 
-<h4>Post</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Post.Titulo" class="control-label"></label>
-                <input asp-for="Post.Titulo" class="form-control" />
-                <span asp-validation-for="Post.Titulo" class="text-danger"></span>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Post.Titulo" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Titulo" class="form-control" />
+                        <span asp-validation-for="Post.Titulo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.Autor" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Autor" class="form-control" />
+                        <span asp-validation-for="Post.Autor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.CategoriaId" class="control-label mb-3 fs-4"></label>
+                        <select id="1stCategoria" asp-for="Post.CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId">
+                            <option value="">--Por favor elija la categoria--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Post.Contenido" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Contenido" class="form-control" />
+                        <span asp-validation-for="Post.Contenido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.Fecha" class="control-label mb-3 fs-4"></label>
+                        <input asp-for="Post.Fecha" class="form-control" />
+                        <span asp-validation-for="Post.Fecha" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Post.TagId" class="control-label mb-3 fs-4"></label>
+                        <select id="1stTag" asp-for="Post.TagId" class="form-control" asp-items="ViewBag.TagId">
+                            <option value="">--Por favor elija la subcategoria--</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Post.Contenido" class="control-label"></label>
-                <input asp-for="Post.Contenido" class="form-control" />
-                <span asp-validation-for="Post.Contenido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.Autor" class="control-label"></label>
-                <input asp-for="Post.Autor" class="form-control" />
-                <span asp-validation-for="Post.Autor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.Fecha" class="control-label"></label>
-                <input asp-for="Post.Fecha" class="form-control" />
-                <span asp-validation-for="Post.Fecha" class="text-danger"></span>
-            </div>
-             <div class="form-group">
-                <label asp-for="Post.CategoriaId" class="control-label"></label>
-                <select id="1stCategoria" asp-for="Post.CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId">
-                    <option value="">--Por favor elija la categoria--</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.TagId" class="control-label"></label>
-                <select id="1stTag" asp-for="Post.TagId" class="form-control" asp-items="ViewBag.TagId">
-                    <option value="">--Por favor elija la subcategoria--</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="file" name="uploadfiles" />
-                <input asp-page-handler="Upload" type="submit" value="Upload" class="btn btn-primary" />
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2">
+                            <div class="form-group mt-2">
+                                <a asp-page="Index"><i class="bi bi-arrow-left-square-fill text-success fs-3"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="form-group mt-2">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="file" name="uploadfiles" />
+                                <input asp-page-handler="Upload" type="submit" value="Upload" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

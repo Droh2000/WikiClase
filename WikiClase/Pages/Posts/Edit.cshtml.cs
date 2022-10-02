@@ -14,26 +14,29 @@ namespace WikiClase.Pages.Posts
 {
     public class EditModel : PageModel
     {
-        private readonly WikiClase.Data.AplicationDBContext _context;
+        private readonly WikiClase.Data.AplicationDBContext _context; // Este leera en la BASE de DAtos
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public EditModel(WikiClase.Data.AplicationDBContext context, IWebHostEnvironment webHostEnvironment)
         {
+            // inyeccion de dependencia
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
 
+        // con esto nos movemos entre la vista y el controlador
         [BindProperty]
         public Post Post { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        // async lleva siempre un IACtionResult (Podemos mandar cualquier cosa 'return')
+        public async Task<IActionResult> OnGetAsync(int? id)//? campo opcional
         {
             if (id == null || _context.Posts == null)
             {
                 return NotFound();
             }
-
-            var post =  await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            // Entramos a la tabla y no de el primer elemento (Es como un SELECT donde ese where se cumpla)
+            var post =  await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);// m es una variable
             if (post == null)
             {
                 return NotFound();
@@ -46,14 +49,17 @@ namespace WikiClase.Pages.Posts
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(IFormFile uploadfiles,int id)
+        public async Task<IActionResult> OnPostAsync(IFormFile uploadfiles,int id) // Este es el que manda a la base de datos
         {
+            // Este nos afecta si el dato es obligatorio y no mandamos nada se activa este if
+            // o mandamos NULL
             /*if (!ModelState.IsValid)
             {
                 //return Page();
                 return BadRequest(ModelState);
             }*/
 
+            // modifica el post con el blindproperti
             _context.Attach(Post).State = EntityState.Modified;
 
             try
@@ -100,7 +106,7 @@ namespace WikiClase.Pages.Posts
                 }
                 else
                 {
-                    throw;
+                    throw; 
                 }
             }
 

@@ -1,10 +1,66 @@
 ﻿@page
 @model IndexModel
+
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <h1 class="display-6 text-center mb-3 fw-bold">Bienvenidos</h1>
+    <div class="row row-cols-3">
+        <div class="col" style="background-color:#A6FFFA">
+            <h3 class="text-center">Ultimas Categorias</h3>
+            <ul class="list-group">
+                @foreach (var item in Model.getCategorias)
+                {
+                    <li class="list-group-item list-group-item-info">@item.nombreCategoria</li>
+                }
+            </ul>
+            <div class="col">
+            <h3 class="text-center">Subategorias</h3>
+                <ol class="list-group list-group-numbered">
+                    @foreach (var item in Model.getTags)
+                    {
+                        <li class="list-group-item text-center">@item.subCategoria</li>
+                    }
+                </ol>
+        </div>
+        </div>
+        <div class="col-6">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="col-12">
+                            <img src="https://img.freepik.com/foto-gratis/resumen-superficie-texturas-muro-piedra-hormigon-blanco_74190-8189.jpg?w=2000" class="d-block w-100" alt="..." height="500px">
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Posts de la Wiki</h5>
+                            <p>Inicio</p>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.getPosts)
+                    {
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <div class="col-12">
+                                <img class="d-block w-100" src="~/Images/@item.nombreImagen" alt="@item.nombreImagen" height="500px" />
+                            </div>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 style="color:#0070F5"><strong>@item.Contenido</strong></h5>
+                                <p>@item.Categoria.nombreCategoria</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
 </div>

@@ -5,38 +5,112 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    * updated carousel element to add gaps around cards */
+    .carousel {
+        background-color: powderblue;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    /* make inner block flex to stretch slides */
+    .carousel-inner {
+        display: flex;
+    }
+
+    /* make flex item to stretch parent container to max child height */
+    .carousel-item {
+        display: flex !important;
+        /* animate carousel item opacity property */
+        opacity: 0;
+        transition: transform .6s ease-in-out, opacity .3s ease-in-out !important;
+    }
+
+        /* animate carousel item opacity property */
+        .carousel-item.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+    .carousel-item-start,
+    .carousel-item-next {
+        opacity: 1;
+    }
+    /* end of animating of opacity */
+
+    /* added for example purpose (make arrows darker) */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: brightness(0);
+    }
+
+    /* adjusting (stretching) slide's card to max height */
+    .carousel-item .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carousel-item .card {
+        flex-grow: 1;
+    }
+    /* end of adjusting */
+
+
+    /* play around this classes to animate it like you want */
+    /*
+    .carousel-item-end
+    .carousel-item-next
+    .carousel-item-prev
+    .carousel-item-start
+    */
+</style>
+
+<h1 class="text-center">Subcategorias Registradas</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create"><i class="bi bi-plus-square-fill fs-1" style="color:#31E884"></i></a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tag[0].subCategoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tag[0].Categoria)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Tag) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.subCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.nombreCategoria)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="container">
+    <div class="row">
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container mt-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Inicio</h5>
+                                <p class="card-text">Aqui esta el contenido de cada subcategoria registrada con la categoria.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var item in Model.Tag)
+                {
+                    <div class="carousel-item">
+                        <div class="container mt-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.subCategoria)</h4>
+                                    <h5>@Html.DisplayNameFor(model => model.Tag[0].Categoria)</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Categoria.nombreCategoria)</h6>
+                                </div>
+                                <div class="card-footer" style="background-color:#A1B8BF">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square fs-5"></i></a> |
+                                    <a asp-page="./Details" asp-route-id="@item.Id"><i class="bi bi-plus-circle-fill fs-5 text-warning"></i></a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.Id"><i class="bi bi-trash3 fs-5 text-danger"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</div>
